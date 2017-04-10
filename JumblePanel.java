@@ -20,21 +20,21 @@ public class JumblePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.drawRect(0, 50, 500, 100);
-		for (int i=1; i<6; i++){
-			g.drawRect(100*i, 150, 100, 100);
-			if (i == 2 || i==4 || i==5){
-				g.drawOval(100*i, 150, 100, 100);
-			}
-		}
+		g.drawRect(0, 0, 400, 100);
+		g.drawRect(500, 0, 1000, 200);
 		
-		g.drawRect(0, 300, 500, 100);
-		for (int i=1; i<6; i++){
-			g.drawRect(100*i, 400, 100, 100);
-			if (i == 3 || i==4){
-				g.drawOval(100*i, 400, 100, 100);
-			}
-		}
+		g.drawRect(0, 225, 400, 100);
+		g.drawRect(500, 225, 1000, 200);
+		
+		g.drawRect(0, 450, 400, 100);
+		g.drawRect(500, 450, 1000, 200);
+		
+		g.drawRect(0, 675, 400, 100);
+		g.drawRect(500, 675, 1000, 200);
+
+		
+
+		
 		
 	}
 

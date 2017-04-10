@@ -1,6 +1,7 @@
 
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
@@ -11,6 +12,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class JumbleFrame extends JFrame {
 	String lang="English";// start off without a language
@@ -27,6 +30,7 @@ public class JumbleFrame extends JFrame {
 		addMenuBar();// just wanted to show you how to make a menu bar
 		addSplashPanel();// start screen you can add your trademark images
 		pack();// make sure the frame is just big enough to show all components
+		
 	}
 
 	private void addSplashPanel() {
@@ -124,6 +128,36 @@ public class JumbleFrame extends JFrame {
 		this.getContentPane().add(jp);
 		pack();
 		validate();
+		Font font = new Font("Comic Sans MS", Font.PLAIN, 50);
+		JTextField textBox = new JTextField(20);
+		textBox.setSize(400, 100);
+		textBox.setLocation(0, 0);
+		textBox.setFont(font);
+		textBox.setText("Input word here.");
+		
+		JTextField textBox2 = new JTextField(20);
+		textBox2.setSize(400, 100);
+		textBox2.setLocation(0, 225);
+		textBox2.setFont(font);
+		textBox2.setText("Input word here.");
+		
+		JTextField textBox3 = new JTextField(20);
+		textBox3.setSize(400, 100);
+		textBox3.setLocation(0, 450);
+		textBox3.setFont(font);
+		textBox3.setText("Input word here.");
+		
+		JTextField textBox4 = new JTextField(20);
+		textBox4.setSize(400, 100);
+		textBox4.setLocation(0, 675);
+		textBox4.setFont(font);
+		textBox4.setText("Input word here.");
+		
+		jp.add(textBox);
+		jp.add(textBox2);
+		jp.add(textBox3);
+		jp.add(textBox4);
+		
 		repaint();
 		jp.loadDictionary();
 		
