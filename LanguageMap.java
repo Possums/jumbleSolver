@@ -1,10 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -20,11 +25,24 @@ public class LanguageMap {
 		this.myLanguage=lang;
 		// more...
 	}
-	
+
+	public String getString(String a){
+	    Set<String> set = dictionary.computeIfAbsent(a, k -> new HashSet<>());
+	    String x = "";
+
+		for (String s : set){
+			
+			x += s;
+			x+= " ";
+		}
+		
+		return x;
+	}
+
 	public void scan(){
 		dictionaryFile = new File("src/language_files/English.txt");
 		dictionary = new HashMap<String, Set<String>>();
-		
+
 		try {
 
 			Scanner sc = new Scanner(dictionaryFile);
@@ -52,6 +70,7 @@ public class LanguageMap {
 		char[] chars = a.toCharArray();
 		Arrays.sort(chars);
 		String alphabetized = new String(chars);
+		alphabetized.toLowerCase();
 		return alphabetized;
 	}
 

@@ -4,9 +4,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -125,6 +127,7 @@ public class JumbleFrame extends JFrame {
 		LanguageMap map = new LanguageMap("English", null);
 		JumblePanel jp = new JumblePanel(map);
 		jp.setPreferredSize(d);
+		jp.loadDictionary();
 		this.getContentPane().add(jp);
 		pack();
 		validate();
@@ -133,36 +136,102 @@ public class JumbleFrame extends JFrame {
 		textBox.setSize(400, 100);
 		textBox.setLocation(0, 0);
 		textBox.setFont(font);
-		textBox.setText("Input word here.");
+		textBox.setText("Input word here");
 		
 		JTextField textBox2 = new JTextField(20);
 		textBox2.setSize(400, 100);
 		textBox2.setLocation(0, 225);
 		textBox2.setFont(font);
-		textBox2.setText("Input word here.");
+		textBox2.setText("Input word here");
 		
 		JTextField textBox3 = new JTextField(20);
 		textBox3.setSize(400, 100);
 		textBox3.setLocation(0, 450);
 		textBox3.setFont(font);
-		textBox3.setText("Input word here.");
+		textBox3.setText("Input word here");
 		
 		JTextField textBox4 = new JTextField(20);
 		textBox4.setSize(400, 100);
 		textBox4.setLocation(0, 675);
 		textBox4.setFont(font);
-		textBox4.setText("Input word here.");
+		textBox4.setText("Input word here");
 		
 		jp.add(textBox);
 		jp.add(textBox2);
 		jp.add(textBox3);
 		jp.add(textBox4);
 		
+		JTextField answerBox = new JTextField();
+		answerBox.setSize(1000, 200);
+		answerBox.setLocation(500, 0);
+		answerBox.setFont(font);
+		answerBox.setText("Answer will appear here");
+
+		JTextField answerBox2 = new JTextField();
+		answerBox2.setSize(1000, 200);
+		answerBox2.setLocation(500, 225);
+		answerBox2.setFont(font);
+		answerBox2.setText("Answer will appear here");
+
+		JTextField answerBox3 = new JTextField();
+		answerBox3.setSize(1000, 200);
+		answerBox3.setLocation(500, 450);
+		answerBox3.setFont(font);
+		answerBox3.setText("Answer will appear here");
+		
+		JTextField answerBox4 = new JTextField();
+		answerBox4.setSize(1000, 200);
+		answerBox4.setLocation(500, 675);
+		answerBox4.setFont(font);
+		answerBox4.setText("Answer will appear here");
+		
+		jp.add(answerBox);
+		jp.add(answerBox2);
+		jp.add(answerBox3);
+		jp.add(answerBox4);
+		
+		
+		JButton button = new JButton();
+		button.setFont(font);
+		button.setText("Solve");
+		button.setSize(400, 100);
+		button.setLocation(0, 850);
+		jp.add(button);
+		
+	      button.addActionListener(new ActionListener() {
+	          public void actionPerformed(ActionEvent e) {
+	        	  String one = jp.solve(alphabetize(textBox.getText()));
+	        	  String two = jp.solve(alphabetize(textBox2.getText()));
+	        	  String three = jp.solve(alphabetize(textBox3.getText()));
+	        	  String four = jp.solve(alphabetize(textBox4.getText()));
+	        	  
+	        	  System.out.println(one + "one");
+	        	  System.out.println(two + "two");
+	        	  System.out.println(three + "three");
+	        	  System.out.println(four + "four");
+	        	  
+	        	  answerBox.setText(one);
+	        	  answerBox2.setText(two);
+	        	  answerBox3.setText(three);
+	        	  answerBox4.setText(four);
+	        	  
+	          }          
+	       });
+		
+		
 		repaint();
-		jp.loadDictionary();
+		
 		
 	}
 
+	public String alphabetize(String a){
+		char[] chars = a.toCharArray();
+		Arrays.sort(chars);
+		String alphabetized = new String(chars);
+		alphabetized.toLowerCase();
+		return alphabetized;
+	}
+	
 	private LanguageMap getCurrentLanguage() {
 		// TODO Auto-generated method stub
 		return null;
