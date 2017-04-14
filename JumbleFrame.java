@@ -136,25 +136,25 @@ public class JumbleFrame extends JFrame {
 		textBox.setSize(400, 100);
 		textBox.setLocation(0, 0);
 		textBox.setFont(font);
-		textBox.setText("Input word here");
+		textBox.setText("Input");
 		
 		JTextField textBox2 = new JTextField(20);
 		textBox2.setSize(400, 100);
 		textBox2.setLocation(0, 225);
 		textBox2.setFont(font);
-		textBox2.setText("Input word here");
+		textBox2.setText("Input");
 		
 		JTextField textBox3 = new JTextField(20);
 		textBox3.setSize(400, 100);
 		textBox3.setLocation(0, 450);
 		textBox3.setFont(font);
-		textBox3.setText("Input word here");
+		textBox3.setText("Input");
 		
 		JTextField textBox4 = new JTextField(20);
 		textBox4.setSize(400, 100);
 		textBox4.setLocation(0, 675);
 		textBox4.setFont(font);
-		textBox4.setText("Input word here");
+		textBox4.setText("Input");
 		
 		jp.add(textBox);
 		jp.add(textBox2);
@@ -185,10 +185,17 @@ public class JumbleFrame extends JFrame {
 		answerBox4.setFont(font);
 		answerBox4.setText("Answer will appear here");
 		
+		JTextField answerBox5 = new JTextField();
+		answerBox5.setSize(1000, 180);
+		answerBox5.setLocation(500, 900);
+		answerBox5.setFont(font);
+		answerBox5.setText("Multi-word answer");
+		
 		jp.add(answerBox);
 		jp.add(answerBox2);
 		jp.add(answerBox3);
 		jp.add(answerBox4);
+		jp.add(answerBox5);
 		
 		
 		JButton button = new JButton();
@@ -200,10 +207,14 @@ public class JumbleFrame extends JFrame {
 		
 	      button.addActionListener(new ActionListener() {
 	          public void actionPerformed(ActionEvent e) {
-	        	  String one = jp.solve(alphabetize(textBox.getText()));
-	        	  String two = jp.solve(alphabetize(textBox2.getText()));
-	        	  String three = jp.solve(alphabetize(textBox3.getText()));
-	        	  String four = jp.solve(alphabetize(textBox4.getText()));
+	        	  String tempOne = textBox.getText().toLowerCase();
+	        	  String tempTwo = textBox2.getText().toLowerCase();
+	        	  String tempThree = textBox3.getText().toLowerCase();
+	        	  String tempFour = textBox4.getText().toLowerCase();
+	        	  String one = jp.solve(alphabetize(tempOne));
+	        	  String two = jp.solve(alphabetize(tempTwo));
+	        	  String three = jp.solve(alphabetize(tempThree));
+	        	  String four = jp.solve(alphabetize(tempFour));
 	        	  
 	        	  System.out.println(one + "one");
 	        	  System.out.println(two + "two");
@@ -214,10 +225,27 @@ public class JumbleFrame extends JFrame {
 	        	  answerBox2.setText(two);
 	        	  answerBox3.setText(three);
 	        	  answerBox4.setText(four);
-	        	  
+	        	          	  
 	          }          
 	       });
-		
+	      
+			JButton multiButton = new JButton();
+			multiButton.setFont(font);
+			multiButton.setText("Solve Final");
+			multiButton.setSize(400, 100);
+			multiButton.setLocation(0, 975);
+			jp.add(multiButton);
+		      multiButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+
+		        	  
+		        	  String temp = JOptionPane.showInputDialog("Input the scrambled multi-word");
+		        	  String multi = temp.toLowerCase();
+		        	  String multiSolution = jp.multisolve(multi);
+		        	  answerBox5.setText(multiSolution);
+		        	  
+		          }          
+		       });
 		
 		repaint();
 		

@@ -15,6 +15,7 @@ public class JumblePanel extends JPanel {
 
 	public void loadDictionary(){
 		map.scan();
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -36,6 +37,10 @@ public class JumblePanel extends JPanel {
 	
 	public String solve(String one){
 		return map.getString(one);
+	}
+	
+	public String multisolve(String one){
+		return  map.multiString(one);
 	}
 	
 	public String alphabetize(String a){

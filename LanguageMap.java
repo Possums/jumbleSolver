@@ -17,9 +17,14 @@ public class LanguageMap {
 
 	String myLanguage;
 	File dictionaryFile;
+
 	// this needs a Map that maps keys ex:  "aehr" to the 
 	// Set of String { "hare", "hear", "rhea"} that have those chars
 	private HashMap<String, Set<String>> dictionary;
+	ArrayList<String> permutationOne;
+	ArrayList<String> permutationTwo;
+	ArrayList<String> list;
+
 
 	public LanguageMap(String lang, Scanner wordSource) {
 		this.myLanguage=lang;
@@ -27,17 +32,84 @@ public class LanguageMap {
 	}
 
 	public String getString(String a){
-	    Set<String> set = dictionary.computeIfAbsent(a, k -> new HashSet<>());
-	    String x = "";
+		Set<String> set = dictionary.computeIfAbsent(a, k -> new HashSet<>());
+		String x = "";
 
 		for (String s : set){
-			
+
 			x += s;
 			x+= " ";
 		}
-		
+
 		return x;
 	}
+
+
+	public String multiString(String a){
+		//		Set<String> set = dictionary.computeIfAbsent(a,  k-> new HashSet<>());
+		//		String x = "";
+		//		
+		//		for (String s : set){
+		//			x+=s;
+		//			x+=" ";
+		//			
+		//		}
+		//		
+		//		return  x;
+		String result = "";
+		list = new ArrayList<String>();
+		permuteList("", a);
+
+
+		for (int z =0; z<list.size(); z++){
+			for (int i=1; i<a.length(); i++){
+				a = list.get(z);
+				String x = a.substring(0, i);
+				String y = a.substring(i);
+				//System.out.println(x + " " + y);
+
+
+				String one = alphabetize(x.toLowerCase());
+				String two = alphabetize(y.toLowerCase());
+				//System.out.println("iterate");
+				if (dictionary.get(one) != null && dictionary.get(two) != null){
+					//System.out.println("exists");
+					result += stringFromSet(dictionary.get(one)) + "|" + stringFromSet(dictionary.get(two)) + "  ";
+				}
+			}
+		}
+		//JOptionPane.showMessageDialog(null, "iterate string");
+
+
+
+
+
+		return result;
+	}
+
+	public String stringFromSet(Set<String> set){
+
+		String x = "";
+
+		for (String s : set){
+			x += s;
+			x += " ";
+		}
+
+		return x;
+	}
+
+	public void permuteList(String prefix, String str){
+		int n = str.length();
+		if (n == 0) list.add(prefix);
+		else {
+			for (int i=0; i<n; i++){
+				permuteList(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+			}
+		}
+	}
+
+
 
 	public void scan(){
 		dictionaryFile = new File("src/language_files/English.txt");
@@ -70,7 +142,6 @@ public class LanguageMap {
 		char[] chars = a.toCharArray();
 		Arrays.sort(chars);
 		String alphabetized = new String(chars);
-		alphabetized.toLowerCase();
 		return alphabetized;
 	}
 
